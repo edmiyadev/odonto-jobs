@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             LocationSeeder::class,
+            TypeEmploymentSeeder::class,
             // Add other seeders here as needed
         ]);
     }
