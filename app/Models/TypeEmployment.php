@@ -11,4 +11,9 @@ class TypeEmployment extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function vacancies()
+    {
+        return $this->hasMany(Vacancy::class);
+    }
 }

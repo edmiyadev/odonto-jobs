@@ -25,7 +25,7 @@ class TypeEmploymentRepository implements TypeEmploymentRepositoryInterface
     public function updateTypeEmployment(int $id, array $data)
     {
         $typeEmployment = $this->getTypeEmploymentById($id);
-        return  $typeEmployment->update($data);
+        return  $typeEmployment?->update($data);
     }
 
     public function deleteTypeEmployment(int $id)
