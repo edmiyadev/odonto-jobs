@@ -9,12 +9,18 @@ class VacancyRepository implements VacancyRepositoryInterface
 {
     public function getAllVacancies()
     {
-        return Vacancy::query()->orderBy('created_at', 'desc')->paginate();
+        return Vacancy::query()->with([
+            'location:id,name',
+            'typeEmployment:id,name'
+        ])->orderBy('created_at', 'desc')->paginate();
     }
 
     public function getVacancyById(int $id)
     {
-        return Vacancy::query()->find($id);
+        return Vacancy::query()->with([
+            'location:id,name',
+            'typeEmployment:id,name'
+        ])->find($id);
     }
 
     public function createVacancy(array $data)
