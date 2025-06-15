@@ -20,8 +20,6 @@ class Vacancy extends Model
         'description',
         'requirements',
         'benefits',
-        'experience_level',
-        'educational_level',
         'company_email',
         'company_phone'
     ];

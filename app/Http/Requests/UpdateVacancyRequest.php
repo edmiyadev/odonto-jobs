@@ -31,8 +31,6 @@ class UpdateVacancyRequest extends FormRequest
             'description' => 'sometimes|required|string',
             'requirements' => 'sometimes|nullable|string',
             'benefits' => 'sometimes|nullable|string',
-            'experience_level' => 'sometimes|nullable|string|in:sin experiencia,1-2,3-5,5+,10',
-            'educational_level' => 'sometimes|nullable|string|in:Bachillerato,Técnico,Especialidad,Maestría,Doctorado',
             'company_email' => 'sometimes|required|email|max:255',
             'company_phone' => 'sometimes|nullable|string|max:20',
         ];

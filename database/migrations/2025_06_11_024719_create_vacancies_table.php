@@ -24,8 +24,6 @@ return new class extends Migration
             $table->text('description');
             $table->text('requirements')->nullable();
             $table->text('benefits')->nullable();
-            $table->enum('experience_level', ['sin experiencia', '1-2', '3-5', '5', '10'])->default('sin experiencia');
-            $table->enum('educational_level', ['Bachillerato', 'Técnico', 'Especialidad', 'Maestría', 'Doctorado'])->default('Técnico');
             $table->string('company_email')->nullable();
             $table->string('company_phone');
             $table->timestamps();
