@@ -26,7 +26,7 @@ class StoreVacancyRequest extends FormRequest
             'company_name' => 'sometimes|required|string|max:255',
             'location_id' => 'sometimes|required|exists:locations,id',
             'type_employment_id' => 'sometimes|required|exists:type_employments,id',
-            'salary_min' => 'sometimes|nullable|numeric|min:0',
+            'salary_min' => 'sometimes|required|numeric|min:0',
             'salary_max' => 'sometimes|nullable|numeric|min:0',
             'description' => 'sometimes|required|string',
             'requirements' => 'sometimes|nullable|string',

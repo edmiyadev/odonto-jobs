@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('type_employment_id');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->foreign('type_employment_id')->references('id')->on('type_employments')->onDelete('cascade');
-            $table->decimal('salary_min', 10, 2)->nullable();
+            $table->decimal('salary_min', 10, 2);
             $table->decimal('salary_max', 10, 2)->nullable();
             $table->text('description');
             $table->text('requirements')->nullable();

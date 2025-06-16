@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Interfaces\VacancyRepositoryInterface;
+use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
@@ -15,9 +16,9 @@ class VacancyController extends Controller
         $this->vacancyRepository = $vacancyRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $typeEmployments = $this->vacancyRepository->getAllVacancies();
+        $typeEmployments = $this->vacancyRepository->getAllVacancies($request);
         return response()->json($typeEmployments);
     }
 
