@@ -24,37 +24,31 @@ class VacancyController extends Controller
 
     public function store(StoreVacancyRequest $request)
     {
-        $data = $request->validated();
-        $vacancy = $this->vacancyRepository->createVacancy($data);
+        $vacancy = $this->vacancyRepository->createVacancy($request->validated());
         return response()->json($vacancy, 201);
     }
 
     public function show(int $id)
     {
         $vacancy = $this->vacancyRepository->getVacancyById($id);
+        if (!$vacancy) return response()->json(['message' => 'Vacancy not found'], 404);
 
-        if (!$vacancy) {
-            return response()->json(['message' => 'Vacancy not found'], 404);
-        }
         return response()->json($vacancy);
     }
 
     public function update(UpdateVacancyRequest $request, int  $id)
     {
-        $data = $request->validated();
-        $vacancy = $this->vacancyRepository->updateVacancy($id, $data);
-        if (!$vacancy) {
-            return response()->json(['message' => 'Vacancy not found'], 404);
-        }
+        $vacancy = $this->vacancyRepository->updateVacancy($id, $request->validated());
+        if (!$vacancy) return response()->json(['message' => 'Vacancy not found'], 404);
+
         return response()->json(['message' => 'Vacancy updated successfully']);
     }
 
     public function destroy(int $id)
     {
         $deleted = $this->vacancyRepository->deleteVacancy($id);
-        if (!$deleted) {
-            return response()->json(['message' => 'Vacancy not found'], 404);
-        }
+        if (!$deleted) return response()->json(['message' => 'Vacancy not found'], 404);
+
         return response()->json(['message' => 'Vacancy deleted successfully']);
     }
 }

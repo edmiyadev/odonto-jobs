@@ -2,11 +2,14 @@
 
 namespace App\Interfaces;
 
+use App\Models\TypeEmployment;
+use Illuminate\Database\Eloquent\Collection;
+
 interface TypeEmploymentRepositoryInterface
 {
-    public function getAllTypeEmployments();
-    public function getTypeEmploymentById(int $id);
-    public function createTypeEmployment(array $data);
-    public function updateTypeEmployment(int $id, array $data);
-    public function deleteTypeEmployment(int $id);
+    public function getAllTypeEmployments(): Collection;
+    public function getTypeEmploymentById(int $id): TypeEmployment | null;
+    public function createTypeEmployment(array $data) : TypeEmployment;
+    public function updateTypeEmployment(int $id, array $data) : bool;
+    public function deleteTypeEmployment(int $id): bool;
 }

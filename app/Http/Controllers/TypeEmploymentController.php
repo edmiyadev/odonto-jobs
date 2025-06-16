@@ -23,8 +23,7 @@ class TypeEmploymentController extends Controller
 
     public function store(StoreTypeEmploymentRequest $request)
     {
-        $data = $request->validated();
-        $typeEmployment = $this->typeEmploymentRepository->createTypeEmployment($data);
+        $typeEmployment = $this->typeEmploymentRepository->createTypeEmployment($request->validated());
         return response()->json($typeEmployment, 201);
     }
 
@@ -32,28 +31,26 @@ class TypeEmploymentController extends Controller
     {
         $typeEmployment = $this->typeEmploymentRepository->getTypeEmploymentById($id);
 
-        if (!$typeEmployment) {
-            return response()->json(['message' => 'Type Employment not found'], 404);
-        }
+        if (!$typeEmployment) return response()->json(['message' => 'Type Employment not found'], 404);
+
         return response()->json($typeEmployment);
     }
 
     public function update(UpdateTypeEmploymentRequest $request, int $id)
     {
-        $data = $request->validated();
-        $typeEmployment = $this->typeEmploymentRepository->updateTypeEmployment($id, $data);
-        if (!$typeEmployment) {
-            return response()->json(['message' => 'Type Employment not found'], 404);
-        }
+        $typeEmployment = $this->typeEmploymentRepository->updateTypeEmployment($id, $request->validated());
+
+        if (!$typeEmployment) return response()->json(['message' => 'Type Employment not found'], 404);
+
         return response()->json(['message' => 'Type Employment updated successfully']);
     }
 
     public function destroy(int $id)
     {
         $deleted = $this->typeEmploymentRepository->deleteTypeEmployment($id);
-        if (!$deleted) {
-            return response()->json(['message' => 'Type Employment not found'], 404);
-        }
+
+        if (!$deleted) return response()->json(['message' => 'Type Employment not found'], 404);
+
         return response()->json(['message' => 'Type Employment deleted successfully']);
     }
 }

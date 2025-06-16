@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use App\Interfaces\VacancyRepositoryInterface;
 use App\Models\Vacancy;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class VacancyRepository implements VacancyRepositoryInterface
 {
-    public function getAllVacancies(Request $request)
+    public function getAllVacancies(Request $request): Collection
     {
         $query =  Vacancy::query();
 
@@ -25,7 +26,7 @@ class VacancyRepository implements VacancyRepositoryInterface
         ])->orderBy('created_at', 'desc')->paginate();
     }
 
-    public function getVacancyById(int $id)
+    public function getVacancyById(int $id): Vacancy|null
     {
         return Vacancy::query()->with([
             'location:id,name',
@@ -33,20 +34,24 @@ class VacancyRepository implements VacancyRepositoryInterface
         ])->find($id);
     }
 
-    public function createVacancy(array $data)
+    public function createVacancy(array $data): Vacancy
     {
         return Vacancy::create($data);
     }
 
-    public function updateVacancy(int $id, array $data)
+    public function updateVacancy(int $id, array $data): bool
     {
         $vacancy = $this->getVacancyById($id);
+        if (!$vacancy) return false;
+
         return  $vacancy?->update($data);
     }
 
-    public function deleteVacancy(int $id)
+    public function deleteVacancy(int $id): bool
     {
         $vacancy = $this->getVacancyById($id);
+        if (!$vacancy) return false;
+
         return $vacancy?->delete();
     }
 }
