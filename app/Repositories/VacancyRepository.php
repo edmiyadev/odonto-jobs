@@ -4,12 +4,13 @@ namespace App\Repositories;
 
 use App\Interfaces\VacancyRepositoryInterface;
 use App\Models\Vacancy;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class VacancyRepository implements VacancyRepositoryInterface
 {
-    public function getAllVacancies(Request $request): Collection
+    public function getAllVacancies(Request $request): LengthAwarePaginator
     {
         $query =  Vacancy::query();
 
